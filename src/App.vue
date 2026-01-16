@@ -6,9 +6,11 @@
   const player = ref(null)
 
   function playContent(){
-    console.log(player.value);
-    player.value.play()
-    
+    player.value.play() 
+  }
+
+  function stopContent() {
+    player.value.pause()
   }
 </script>
 
@@ -18,9 +20,9 @@
   </audio>
   <Pletina icon="iconBw" @clickIcon="playContent" />
   <Pletina icon="iconPlay" @clickIcon="playContent" />
+  <Pletina icon="iconStop" @clickIcon="stopContent" />
   <Pletina icon="iconPause" />
   <Pletina icon="iconFw" />
-  <Pletina icon="iconStop" />
 </template>
 
 <style scoped></style>

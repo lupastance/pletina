@@ -25,11 +25,11 @@
     function iconFunction(icon){
         switch (icon) {
             case 'iconPlay':
-                play()
+                emit('clickIcon')
                 break
 
             case 'iconStop':
-                stop()
+                emit('clickIcon')
                 break
         
             default:
@@ -37,10 +37,10 @@
         }
     }
 
-    function play(){
-        console.log('Let\'s play')
-        emit('clickIcon')
-    }
+    // function play(){
+    //     console.log('Let\'s play')
+    //     emit('clickIcon')
+    // }
 
     function stop(){
         console.log('Please Don\'t stop the music');
