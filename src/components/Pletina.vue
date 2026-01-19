@@ -31,7 +31,7 @@
 </script>
 
 <template>
-    <div id="buttons">
+    <div class="buttons">
         <img class="icon-player" :src="icons[icon]"/>
         <img
             class="pletina-button"
@@ -43,15 +43,17 @@
 </template>
 
 <style scoped>
-    #buttons{
+    .buttons{
         text-align: center;
     }
+
     .pletina-button{
         display: block;
         border: solid 1px grey;
         border-radius: 8px;
         box-shadow: 0 0 8px 0 black;
         cursor: pointer;
+        width: 90%;
     }
 
     .pletina-button:hover {
@@ -60,8 +62,14 @@
 
     .icon-player{
         margin: 8px 0;
-        width: 16px;
+        width: 30%;
         cursor: pointer;
         filter: invert(20%);
+    }
+
+    @media (max-width: 600px){
+        .buttons{
+            width: 90%;
+        }
     }
 </style>

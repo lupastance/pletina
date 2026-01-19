@@ -170,4 +170,11 @@
       transform: rotate(360deg);
     }
   }
+
+  @media (max-width: 600px){
+     #app{
+      margin:20% auto;
+      width: 80%;
+    }
+  }
 </style>
