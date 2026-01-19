@@ -1,10 +1,13 @@
 <script setup>
+    // Importamos todas las imágenes de la pletina
     import iconPlay from '@/assets/icon-play.png'
     import iconStop from '@/assets/icon-stop.png'
     import iconPause from '@/assets/icon-pause.png'
     import iconFw from '@/assets/icon-fw.png'
     import iconBw from '@/assets/icon-bw.png'
 
+    // transformamos cada imagen en una propiedad de un objeto
+    // para luego poder acceder más facilmente
     const icons = {
         iconPlay,
         iconStop,
@@ -13,6 +16,7 @@
         iconBw
     }
 
+    // Definimos las props que el componente puede recibir
     const props = defineProps({
         icon: {
             type: String,
@@ -20,38 +24,15 @@
         }
     })
 
+    // Definimos los emits que se pueden ejecutar en el componente padre
     const emit = defineEmits(['clickIcon'])
-
-    function iconFunction(icon){
-        switch (icon) {
-            case 'iconPlay':
-                emit('clickIcon')
-                break
-
-            case 'iconStop':
-                emit('clickIcon')
-                break
-        
-            default:
-                break;
-        }
-    }
-
-    // function play(){
-    //     console.log('Let\'s play')
-    //     emit('clickIcon')
-    // }
-
-    function stop(){
-        console.log('Please Don\'t stop the music');
-    }
-
+    
 </script>
 
 <template>
     <img
         :src="icons[icon]"
-        @click="iconFunction(icon)"
+        @click="emit('clickIcon')"
         class="icon-player"
         alt="icon"
     >
@@ -61,8 +42,9 @@
     .icon-player{
         width: 32px;
         cursor: pointer;
+        filter: invert(90%);
     }
         .icon-player:hover {
-            filter: invert(90%);
+            filter: invert(30%)
         }
 </style>
