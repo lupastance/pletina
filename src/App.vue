@@ -119,7 +119,7 @@
 
   #app{
     margin: 5% auto;
-    width: 40%;
+    width: 30%;
   }
 
   #pletina{
@@ -146,12 +146,16 @@
     position: absolute;
     bottom: 43.8%;
     left: 24.2%;
+    width: 100%;
+    max-width: 12%;
   }
 
   .wheel-right{
     position: absolute;
     bottom: 43.8%;
     left: 63.4%;
+    width: 100%;
+    max-width: 12%;
   }
 
   .cassette-rotate {
