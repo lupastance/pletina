@@ -5,6 +5,7 @@
     import iconPause from '@/assets/icon-pause.png'
     import iconFw from '@/assets/icon-fw.png'
     import iconBw from '@/assets/icon-bw.png'
+    import button from '@/assets/button.png'
 
     // transformamos cada imagen en una propiedad de un objeto
     // para luego poder acceder más facilmente
@@ -30,21 +31,37 @@
 </script>
 
 <template>
-    <img
-        :src="icons[icon]"
-        @click="emit('clickIcon')"
-        class="icon-player"
-        alt="icon"
-    >
+    <div id="buttons">
+        <img class="icon-player" :src="icons[icon]"/>
+        <img
+            class="pletina-button"
+            :src="button"
+            @click="emit('clickIcon')"
+            alt="icon"
+        >
+    </div>
 </template>
 
 <style scoped>
-    .icon-player{
-        width: 32px;
-        cursor: pointer;
-        filter: invert(90%);
+    #buttons{
+        text-align: center;
     }
-        .icon-player:hover {
-            filter: invert(30%)
-        }
+    .pletina-button{
+        display: block;
+        border: solid 1px grey;
+        border-radius: 8px;
+        box-shadow: 0 0 8px 0 black;
+        cursor: pointer;
+    }
+
+    .pletina-button:hover {
+        filter: invert(10%)
+    }
+
+    .icon-player{
+        margin: 8px 0;
+        width: 16px;
+        cursor: pointer;
+        filter: invert(20%);
+    }
 </style>

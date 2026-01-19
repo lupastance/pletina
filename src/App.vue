@@ -1,6 +1,8 @@
 <script setup>
   import { ref } from 'vue';
   import Pletina from './components/Pletina.vue'
+  import Cassette from '@/assets/cassette.png'
+  import CassetteWheel from '@/assets/cassette-wheel.png'
   
   // Tracks ------------------------------------------------------------------------------
   import track01 from '@/assets/music/01. Kavinsky & Lovefoxxx - Nightcall.ogg'
@@ -50,18 +52,24 @@
   let trackActual = 0
 
   const player = ref(null)
+  const wheelLeft = ref(null)
+  const wheelRight = ref(null)
+  const rotate = ref(false)
 
   function playContent(){
-    player.value.play() 
+    player.value.play()
+    rotate.value = true
   }
 
   function pauseContent() {
     player.value.pause()
+    rotate.value = false
   }
 
   function stopContent() {
     player.value.pause()
     player.value.currentTime = 0
+    rotate.value = false
   }
 
   function trackNext() {
@@ -69,6 +77,7 @@
       trackActual++
       player.value.src = trackList[trackActual]
       player.value.play()
+      rotate.value = true
     }
   }
 
@@ -77,24 +86,83 @@
       trackActual--
       player.value.src = trackList[trackActual]
       player.value.play()
+      rotate.value = true
     }
   }
 </script>
 
 <template>
+  <div ref="pletina">
+    <div ref="cassette" id="cassette">
+      <img :src="Cassette" class="cassette-img">
+      <img ref="wheel-left" :src="CassetteWheel" class="wheel-left" :class="{ 'cassette-rotate': rotate }">
+      <img ref="wheel-right":src="CassetteWheel" class="wheel-right" :class="{ 'cassette-rotate': rotate }">
+    </div>
+  </div>
   <audio ref="player">
     <source :src="trackList[trackActual]" type="audio/ogg">
   </audio>
 
-  <Pletina icon="iconBw" @clickIcon="trackPrevious" />
-  <Pletina icon="iconPlay" @clickIcon="playContent" />
-  <Pletina icon="iconStop" @clickIcon="stopContent" />
-  <Pletina icon="iconPause" @clickIcon="pauseContent" />
-  <Pletina icon="iconFw" @clickIcon="trackNext"/>
+  <div id="pletina">
+    <Pletina icon="iconBw" @clickIcon="trackPrevious" />
+    <Pletina icon="iconPlay" @clickIcon="playContent" />
+    <Pletina icon="iconStop" @clickIcon="stopContent" />
+    <Pletina icon="iconPause" @clickIcon="pauseContent" />
+    <Pletina icon="iconFw" @clickIcon="trackNext"/>
+  </div>
 </template>
 
 <style>
   body{
-    background-color: black;
+    background-color: #beb4aa;
+  }
+
+  #app{
+    margin: 5% auto;
+    width: 40%;
+  }
+
+  #pletina{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    justify-content: center;
+    justify-items: center;
+  }
+
+  #cassette{
+    position: relative;
+    width: 100%;
+  }
+
+  .cassette-img {
+    width: 100%;
+    border: solid 1px;
+    border: solid 1px grey;
+    border-radius: 8px;
+  }
+
+  .wheel-left{
+    position: absolute;
+    bottom: 43.8%;
+    left: 24.2%;
+  }
+
+  .wheel-right{
+    position: absolute;
+    bottom: 43.8%;
+    left: 63.4%;
+  }
+
+  .cassette-rotate {
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 </style>
